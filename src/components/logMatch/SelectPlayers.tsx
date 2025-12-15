@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction } from "react";
 import { MultiSelect } from '@mantine/core';
-
+import { squad } from "../../data/squad";
 
 type SelectPlayersProps = {
   activePlayers: string[] | [];
@@ -8,7 +8,6 @@ type SelectPlayersProps = {
 }
 
 export default function SelectPlayers({ activePlayers, setActivePlayer }: SelectPlayersProps){
-  const squad = ["Jad", "Faisal", "Chris", "Rami", "Sina", "Angelo", "Mike", "Jacob"]; 
 
   return (
     <MultiSelect

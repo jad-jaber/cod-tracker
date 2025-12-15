@@ -7,5 +7,6 @@ export type Match = {
     screenshotId: string | null;
     map: string;
     victory: boolean;
+    rounds: number;
     players: Player[];
 }
