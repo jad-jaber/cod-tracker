@@ -4,7 +4,7 @@ import type { Player } from "./Player";
 export type Match = {
     id: string;
     date: Date;
-    screenshotId: string;
+    screenshotId: string | null;
     map: string;
     victory: boolean;
     players: Player[];
