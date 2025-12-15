@@ -33,7 +33,7 @@ export default function Scoreboard({activePlayers}: ScoreboardProps){
           <Table.Th>Player</Table.Th>
           <Table.Th>Score</Table.Th>
           <Table.Th>Plants</Table.Th>
-          <Table.Th>Difuses</Table.Th>
+          <Table.Th>Defuses</Table.Th>
           <Table.Th>Kills</Table.Th>
           <Table.Th>Deaths</Table.Th>
         </Table.Tr>
