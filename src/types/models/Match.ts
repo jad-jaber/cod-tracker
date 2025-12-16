@@ -1,4 +1,4 @@
-import type { Player } from "./Player";
+import type { PlayerScore } from "./PlayerScore";
 
 
 export type Match = {
@@ -8,5 +8,5 @@ export type Match = {
     map: string;
     victory: boolean;
     rounds: number;
-    players: Player[];
+    players: PlayerScore[];
 }

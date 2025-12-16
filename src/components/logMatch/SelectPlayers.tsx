@@ -3,11 +3,11 @@ import { MultiSelect } from '@mantine/core';
 import { squad } from "../../data/squad";
 
 type SelectPlayersProps = {
-  activePlayers: string[] | [];
-  setActivePlayer: Dispatch<SetStateAction<string[] | []>>;
+  players: string[] | [];
+  setPlayers: Dispatch<SetStateAction<string[] | []>>;
 }
 
-export default function SelectPlayers({ activePlayers, setActivePlayer }: SelectPlayersProps){
+export default function SelectPlayers({ players, setPlayers }: SelectPlayersProps){
 
   return (
     <MultiSelect
@@ -15,8 +15,8 @@ export default function SelectPlayers({ activePlayers, setActivePlayer }: Select
       placeholder="Pick the squad members you're playing with"
       maxValues={6}
       data={squad}
-      value={activePlayers}
-      onChange={setActivePlayer}
+      value={players}
+      onChange={setPlayers}
     />
   );
 }

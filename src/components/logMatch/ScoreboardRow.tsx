@@ -1,21 +1,32 @@
-import { useState } from "react";
-import type { Player } from "../../types/models/Player";
-import { Table } from "@mantine/core";
+import { Table, TextInput } from "@mantine/core";
+import type { PlayerScore } from "../../types/models";
+import { useMatchContext } from "../../context/MatchContext";
 
 type ScoreboardRowProps = {
-  player: Player;
+  player: PlayerScore;
 }
 
-export default function ScoreboardRow({player}: ScoreboardRowProps){
+export default function ScoreboardRow({ player }: ScoreboardRowProps){
+  const { updatePlayerScore } = useMatchContext();
+  const fields: (keyof Omit<PlayerScore, "name">)[] = ["score", "plants", "defuses", "kills", "deaths"];
+
+  const handleScoreFieldUpdate = (field: keyof Omit<PlayerScore, "name">, inputValue: string ) => {
+    const value = inputValue === "" ? undefined : Math.max(0, Number(inputValue));
+    updatePlayerScore(player.name, field, value);
+  }
 
   return(
-    <Table.Tr key={player.name}>
+    <Table.Tr>
       <Table.Td>{player.name}</Table.Td>
-      <Table.Td>{player.score}</Table.Td>
-      <Table.Td>{player.plants}</Table.Td>
-      <Table.Td>{player.defuses}</Table.Td>
-      <Table.Td>{player.kills}</Table.Td>
-      <Table.Td>{player.deaths}</Table.Td>
+        {fields.map(field => (
+          <Table.Td key={field}>
+            <TextInput
+              type="number"
+              value={player[field] ?? ""}
+              onChange={(e) => handleScoreFieldUpdate(field, e.target.value)}
+            />
+          </Table.Td>
+        ))}
     </Table.Tr>
   )
 

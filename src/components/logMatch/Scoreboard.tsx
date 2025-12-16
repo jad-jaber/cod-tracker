@@ -1,33 +1,16 @@
-import { act, useState } from "react";
-import type { Player } from "../../types/models/Player";
 import { Table } from "@mantine/core";
 import ScoreboardRow from "./ScoreboardRow";
+import type { PlayerScore } from "../../types/models";
 
 type ScoreboardProps = {
-  activePlayers: string[];
+  scoreboard: PlayerScore[];
 }
 
-export default function Scoreboard({activePlayers}: ScoreboardProps){
+export default function Scoreboard({ scoreboard }: ScoreboardProps){
 
-  function renderScoreboardRows(){
-    return activePlayers.map(p => {
-      const playerRow: Player = {
-        name: p,
-        score: 0,
-        plants: 0,
-        defuses: 0,
-        kills: 0,
-        deaths: 0
-      }
-
-      return(
-        <ScoreboardRow player={playerRow} />
-      )
-    });
-  }
 
   return(
-    <Table>
+    <Table verticalSpacing="sm" withRowBorders={false}>
       <Table.Thead>
         <Table.Tr>
           <Table.Th>Player</Table.Th>
@@ -38,7 +21,12 @@ export default function Scoreboard({activePlayers}: ScoreboardProps){
           <Table.Th>Deaths</Table.Th>
         </Table.Tr>
       </Table.Thead>
-      <Table.Tbody>{renderScoreboardRows()}</Table.Tbody>
+
+      <Table.Tbody>
+        {scoreboard.map(player => (
+          <ScoreboardRow key={player.name} player={player} />
+        ))}
+      </Table.Tbody>
     </Table>
   )
 

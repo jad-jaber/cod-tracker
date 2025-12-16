@@ -1,29 +1,21 @@
 import { Link } from "react-router";
-import { useEffect, useState } from "react";
-import type { Match, Player } from "../types/models/index";
-import { Center, Container } from "@mantine/core";
+import { Container } from "@mantine/core";
 import SelectPlayers from "../components/logMatch/SelectPlayers";
-import ScoreboardRow from "../components/logMatch/ScoreboardRow";
 import Scoreboard from "../components/logMatch/Scoreboard";
+import { useMatchContext } from "../context/MatchContext";
 
 
 export default function LogMatch() {
-    const [ activePlayers, setActivePlayers ] = useState<string[] | []>([]);
-
-    useEffect(() =>{
-        console.log("active players changed", activePlayers);
-    },[activePlayers]);
-
-
+    const { selectedPlayers, setSelectedPlayers, scoreboard } = useMatchContext();
 
     return (
         <>
-            <div style={{ padding: 24 }}>
-                <Link to="/">Back to Home</Link>
-            </div>
+            <Link to="/">Back to Home</Link>
+
             <Container>
-                <SelectPlayers activePlayers={activePlayers} setActivePlayer={setActivePlayers} />
-                <Scoreboard activePlayers={activePlayers} />
+                <SelectPlayers players={selectedPlayers} setPlayers={setSelectedPlayers} />
+
+                <Scoreboard scoreboard={scoreboard} />
             </Container>
         </>
     );

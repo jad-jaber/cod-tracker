@@ -8,11 +8,14 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/charts/styles.css";
 import "@mantine/dropzone/styles.css";
+import { MatchProvider } from './context/MatchContext';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider>
-      <RouterProvider router={router} />
+      <MatchProvider>
+        <RouterProvider router={router} />
+      </MatchProvider>
     </MantineProvider>
   </StrictMode>
 )
