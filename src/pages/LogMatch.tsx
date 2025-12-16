@@ -10,6 +10,8 @@ import SelectDate from "../components/shared/SelectDate";
 export default function LogMatch() {
     const { selectedPlayers, setSelectedPlayers, scoreboard } = useMatchContext();
 
+    //TODO: Make a MatchDetails component that holds SelectMap, SelectDate, RoundsPlayed, MatchResult (win vs loss)
+
     return (
         <>
             <Link to="/">Back to Home</Link>
