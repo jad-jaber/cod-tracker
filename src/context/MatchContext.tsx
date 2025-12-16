@@ -4,16 +4,25 @@ import type { PlayerScore, Match } from "../types/models";
 export interface MatchContextState {
     selectedPlayers: string[];
     setSelectedPlayers: Dispatch<SetStateAction<string[]>>
+    
     scoreboard: PlayerScore[];
     updatePlayerScore: (playerName: string, field: keyof Omit<PlayerScore, "name">, value: number | undefined) => void;
+    
+    selectedMap: string | null;
+    setSelectedMap: Dispatch<SetStateAction<string | null>>
+
+    selectedDate: string | null; //-- converted to date before persisting
+    setSelectedDate: Dispatch<SetStateAction<string | null>>;
 }
 
 const MatchContext = createContext<MatchContextState | undefined>(undefined);
 
 
 export function MatchProvider({ children }: {children: ReactNode}) {
-    const [selectedPlayers, setSelectedPlayers] = useState<string[]>([]);
-    const [scoreboard, setScoreboard] = useState<PlayerScore[]>([]);
+    const [ selectedPlayers, setSelectedPlayers ] = useState<string[]>([]);
+    const [ scoreboard, setScoreboard ] = useState<PlayerScore[]>([]);
+    const [ selectedMap, setSelectedMap ] = useState<string | null>(null);
+    const [ selectedDate, setSelectedDate ] = useState<string | null>(new Date().toISOString().split("T")[0]); 
 
     //----- A new row in the scoreboard
     const emptyScore = (name: string): PlayerScore => ({
@@ -25,7 +34,7 @@ export function MatchProvider({ children }: {children: ReactNode}) {
         deaths: undefined,
     });
 
-    
+
     //----- Sync scoreboard when selected players change
     useEffect(() => {
         setScoreboard(prev =>
@@ -49,6 +58,10 @@ export function MatchProvider({ children }: {children: ReactNode}) {
                 setSelectedPlayers,
                 scoreboard,
                 updatePlayerScore,
+                selectedMap, 
+                setSelectedMap,
+                selectedDate,
+                setSelectedDate,
             }}
         >
             {children}

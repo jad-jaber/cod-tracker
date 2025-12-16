@@ -21,6 +21,7 @@ export default function ScoreboardRow({ player }: ScoreboardRowProps){
         {fields.map(field => (
           <Table.Td key={field}>
             <TextInput
+              variant="filled"
               type="number"
               value={player[field] ?? ""}
               onChange={(e) => handleScoreFieldUpdate(field, e.target.value)}

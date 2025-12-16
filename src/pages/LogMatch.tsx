@@ -1,8 +1,10 @@
 import { Link } from "react-router";
-import { Container } from "@mantine/core";
+import { Container, Group } from "@mantine/core";
 import SelectPlayers from "../components/logMatch/SelectPlayers";
 import Scoreboard from "../components/logMatch/Scoreboard";
 import { useMatchContext } from "../context/MatchContext";
+import SelectMap from "../components/logMatch/SelectMap";
+import SelectDate from "../components/shared/SelectDate";
 
 
 export default function LogMatch() {
@@ -14,6 +16,10 @@ export default function LogMatch() {
 
             <Container>
                 <SelectPlayers players={selectedPlayers} setPlayers={setSelectedPlayers} />
+                <Group>
+                    <SelectMap />
+                    <SelectDate />
+                </Group>
 
                 <Scoreboard scoreboard={scoreboard} />
             </Container>

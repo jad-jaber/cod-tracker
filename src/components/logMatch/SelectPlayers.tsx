@@ -11,8 +11,9 @@ export default function SelectPlayers({ players, setPlayers }: SelectPlayersProp
 
   return (
     <MultiSelect
-      label="Squad"
-      placeholder="Pick the squad members you're playing with"
+      w={"50%"}
+      label="SQUAD"
+      placeholder=""
       maxValues={6}
       data={squad}
       value={players}
